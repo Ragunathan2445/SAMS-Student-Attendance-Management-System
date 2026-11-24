@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* White is the primary background; brown is the secondary/accent colour throughout. */
+@theme {
+  --color-brand-50: #fbf7f3;
+  --color-brand-100: #f4ebe1;
+  --color-brand-200: #e7d4c0;
+  --color-brand-300: #d5b494;
+  --color-brand-400: #bc8d63;
+  --color-brand-500: #a26f45;
+  --color-brand-600: #8a5a35;
+  --color-brand-700: #6f4529;
+  --color-brand-800: #573620;
+  --color-brand-900: #432a1a;
+  --color-brand-950: #26170d;
+
+  --color-ink: #2b2118;
+  --color-ink-soft: #5c4d40;
+  --color-muted: #8a7a6c;
+  --color-line: #ece3d9;
+  --color-canvas: #ffffff;
+
+  /* Attendance status palette – validated for colour-vision deficiency (light surface). */
+  --color-st-present: #0e8a6a;
+  --color-st-partial: #7db85a;
+  --color-st-absent: #c2412d;
+  --color-st-pending: #7b5ea7;
+  --color-st-leave: #c98a2b;
+  --color-st-holiday: #b9b0a6;
+
+  --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --font-sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  h1, h2, h3 { font-family: var(--font-serif); letter-spacing: -0.01em; }
+  ::selection { background: var(--color-brand-200); }
+  :focus-visible { outline: 2px solid var(--color-brand-600); outline-offset: 2px; }
+}
+
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-white; }
+  .field-input {
+    @apply w-full rounded-lg border border-line bg-white px-3 py-2 text-[15px] text-ink placeholder:text-muted
+      transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 disabled:bg-brand-50;
+  }
+  .table-base { @apply w-full text-left text-sm; }
+  .table-base thead th {
+    @apply whitespace-nowrap border-b border-line bg-brand-50 px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-ink-soft;
+  }
+  .table-base tbody td { @apply border-b border-line px-3 py-2.5 align-middle; }
+  .table-base tbody tr:last-child td { @apply border-b-0; }
+  .table-base tbody tr:hover td { @apply bg-brand-50/60; }
+  .num { font-variant-numeric: tabular-nums; }
+}
+
+.recharts-cartesian-axis-tick-value { font-size: 12px; fill: var(--color-muted); }
+.recharts-tooltip-cursor { fill: var(--color-brand-50); }
